@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* Use a class-based dark mode switch instead of relying on prefers-color-scheme,
+   so the in-app theme toggle can override the system setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4efe1;
+  --bg-dot: rgba(35, 32, 29, 0.06);
+  --surface: rgba(255, 255, 255, 0.6);
+  --text: #23201d;
+  --muted-text: #7a7263;
+  --card-bg: #fdfbf5;
+  --thread: #ddd3b8;
+}
+
+.dark {
+  --bg: #23201d;
+  --bg-dot: rgba(255, 255, 255, 0.05);
+  --surface: rgba(0, 0, 0, 0.22);
+  --text: #f3ede0;
+  --muted-text: #cfc6b3;
+  --card-bg: #f6f1e3;
+  --thread: #cdc2a0;
+}
+
+@theme {
+  --color-app-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--text);
+  --color-muted: var(--muted-text);
+  --color-card: var(--card-bg);
+  --color-thread: var(--thread);
+
+  --color-rust: #b9502f;
+  --color-rust-dark: #98401f;
+
+  /* Note cards are always paper-colored regardless of theme, so text on them
+     must stay a fixed dark ink -- NOT the theme-switching --color-ink. */
+  --color-paper-ink: #23201d;
+  --color-paper-muted: #6f6656;
+
+  --color-tag-idea: #c98a2c;
+  --color-tag-work: #3f6f8f;
+  --color-tag-personal: #6b8f5a;
+  --color-tag-urgent: #b9502f;
+
+  --font-display: "Space Mono", "Courier New", monospace;
+  --font-body: "Work Sans", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-app-bg text-ink font-body transition-colors duration-300;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-rust outline-offset-2;
+  }
+}
+
+/* ---------- Pieces that are awkward to express as pure utilities ---------- */
+
+/* Subtle corkboard/paper texture behind the whole app */
+.dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--bg-dot) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+/* Hand-pinned note cards: alternating tilt that straightens on hover */
+.note-card {
+  transform: rotate(var(--tilt, -1deg));
+}
+.notes-grid .note-card:nth-child(odd) {
+  --tilt: -1.1deg;
+}
+.notes-grid .note-card:nth-child(even) {
+  --tilt: 1.3deg;
+}
+.notes-grid .note-card:nth-child(3n) {
+  --tilt: -0.6deg;
+}
+.note-card:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+.note-card--deleting {
+  opacity: 0;
+  transform: scale(0.9) rotate(0deg);
+}
+
+/* Tag radio "chips" -- visually hide the input, style the label on :checked */
+.tag-chip input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.tag-chip:has(input:checked) {
+  @apply border-paper-ink/70 bg-thread/30 font-semibold;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
