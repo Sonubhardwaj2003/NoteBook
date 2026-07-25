@@ -56,7 +56,7 @@
   }
 
   :focus-visible {
-    @apply outline outline-2 outline-rust outline-offset-2;
+    @apply outline outline-rust outline-offset-2;
   }
 }
 
