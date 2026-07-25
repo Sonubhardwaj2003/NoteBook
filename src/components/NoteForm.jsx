@@ -118,7 +118,7 @@ export default function NoteForm({ onSave, editingNote, onCancelEdit }) {
 
       <button
         type="submit"
-        className="mt-1 rounded bg-rust py-3 font-display text-sm font-bold tracking-wide text-white transition-all hover:-translate-y-0.5 hover:bg-rust-dark active:translate-y-0"
+        className="mt-1 rounded cursor-pointer bg-rust py-3 font-display text-sm font-bold tracking-wide text-white transition-all hover:-translate-y-0.5 hover:bg-rust-dark active:translate-y-0"
       >
         {isEditing ? "Save changes" : "Add note"}
       </button>

@@ -88,10 +88,15 @@ function App() {
         <section className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-4 py-10 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
           {/* Image */}
           <div className="order-1 flex w-full justify-center lg:order-2 lg:w-1/2">
-            <img
+            {/* <img
               src={noteLogo}
               alt="Notebook"
               className="h-48 w-48 rounded-full border-4 border-card object-cover shadow-2xl sm:h-64 sm:w-64 md:h-72 md:w-72 lg:h-95 lg:w-95 xl:h-112.5 xl:w-112.5"
+            /> */}
+            <img
+              src={noteLogo}
+              alt="Notebook"
+              className="floating-image h-48 w-48 rounded-full border-4 border-card object-cover shadow-2xl sm:h-64 sm:w-64 md:h-72 md:w-72 lg:h-95 lg:w-95 xl:h-112.5 xl:w-112.5"
             />
           </div>
 

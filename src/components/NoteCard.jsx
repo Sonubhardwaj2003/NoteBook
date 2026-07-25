@@ -48,14 +48,14 @@ export default function NoteCard({ note, isDeleting, onEdit, onDelete, onToggleP
       <footer className="flex gap-4 border-t border-dashed border-thread pt-2">
         <button
           type="button"
-          className="text-xs text-paper-ink/70 underline"
+          className="text-xs text-paper-ink/70 underline cursor-pointer *:hover:text-paper-ink/90 transition-all hover:-translate-y-0.5 active:translate-y-0"
           onClick={() => onEdit(note)}
         >
           Edit
         </button>
         <button
           type="button"
-          className="text-xs text-rust-dark underline"
+          className="text-xs text-rust-dark underline cursor-pointer *:hover:text-rust-dark transition-all hover:-translate-y-0.5 active:translate-y-0"
           onClick={() => onDelete(note.id)}
         >
           Delete
